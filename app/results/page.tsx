@@ -7,7 +7,6 @@ const Results = () => {
     console.log(nextSteps)
     return (
         <div>
-            <p>This is some text</p>
             {nextSteps === "inHouseReviewProcess" &&
                 <div>
                     <h1 className="w-full text-center text-4xl font-bold">✅ In-House Review Process</h1>

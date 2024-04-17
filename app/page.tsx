@@ -5,7 +5,6 @@ import Interior from "../components/Interior";
 import Exterior from "../components/Exterior";
 import { InteriorCheckBoxes, ExteriorCheckBoxes } from '@/types'
 import { useRouter } from 'next/navigation'
-// import { z } from 'zod'
 import { trpc } from '@/app/_trpc/client'
 
 export default function Home() {
@@ -41,7 +40,7 @@ export default function Home() {
   });
 
   // Validate an option was selected
-  const validateOptionSelected = () => {
+  const validateOptionSelected = (): Boolean => {
 
     // One of the exterior checkboxes was selected
     if (exteriorCheckboxes.garageDoorReplacement ||
@@ -68,7 +67,7 @@ export default function Home() {
   }
 
   // Reset checkboxes
-  const resetCheckboxes = () => {
+  const resetCheckboxes = (): void => {
 
     // Reset external checkboxes
     exteriorCheckboxes.exteriorDoors = false
@@ -84,61 +83,49 @@ export default function Home() {
   }
 
   // Handler function to update the selected option
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setSelectedOption(event.target.value);
     resetCheckboxes()
   };
 
+  // function to handle the onSubmit action
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     let resultString = ""
-    let resultEnum = {
-      inHouseReviewProcess: false,
-      otcSubmissionProcess: false,
-      noPermit: false
-    }
-    let finalResult = ""
 
     // exterior logic
     if (selectedOption === "exterior") {
       if (exteriorCheckboxes.other) {
-        resultString = "Other was selected - In-House Review Process is required"
-        resultEnum.inHouseReviewProcess = true
-        finalResult = "inHouseReviewProcess"
+        resultString = "inHouseReviewProcess"
       }
       else if (exteriorCheckboxes.garageDoorReplacement || exteriorCheckboxes.exteriorDoors) {
-        resultString = "Garage Door Replacement and/or Exterior Doors was submitted - Over-The-Counter Submission Process is required"
-        resultEnum.otcSubmissionProcess = true
-        finalResult = "otcSubmissionProcess"
+        resultString = "otcSubmissionProcess"
       }
       else {
-        resultString = "No Permit was submitted"
-        resultEnum.noPermit = true
-        finalResult = "noPermit"
+        resultString = "noPermit"
       }
     }
     // interior logic
     else {
       if (interiorCheckboxes.bathroomRemodel) {
-        resultString = "Bathroom Remodel was selected - Over-The-Counter Submission Process is required"
-        resultEnum.otcSubmissionProcess = true
-        finalResult = "otcSubmissionProcess"
+        resultString = "otcSubmissionProcess"
       }
       else {
-        resultString = "Bathroom Remodel was not selected - so In-House Review Process is needed"
-        resultEnum.inHouseReviewProcess = true
-        finalResult = "inHouseReviewProcess"
+        resultString = "inHouseReviewProcess"
       }
 
     }
 
+    // tRPC call to persist results to the database
     const res = await createNewPermit.mutateAsync({
-      process: finalResult,
-      nextSteps: nextSteps.get(finalResult)
+      process: resultString,
+      nextSteps: nextSteps.get(resultString)
     });
     console.log(res)
 
-    router.push('/results?nextSteps=' + finalResult)
+    // navigate user to the results page
+    router.push('/results?nextSteps=' + resultString)
   }
 
   return (

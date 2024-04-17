@@ -21,8 +21,3 @@ export interface ExteriorCheckBoxProps {
     checkboxes: ExteriorCheckBoxes;
     setCheckBoxes: React.Dispatch<React.SetStateAction<ExteriorCheckBoxes>>;
 };
-
-export interface ResultProps {
-    resultString: string;
-    result: string;
-};

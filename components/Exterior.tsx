@@ -4,7 +4,7 @@ import { ExteriorCheckBoxProps } from '@/types'
 
 const Exterior = ({ checkboxes, setCheckBoxes }: ExteriorCheckBoxProps) => {
     // Handler function to toggle the checked state of a checkbox
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, checked } = event.target;
         setCheckBoxes({
             ...checkboxes,

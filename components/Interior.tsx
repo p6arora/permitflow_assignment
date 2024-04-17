@@ -4,7 +4,7 @@ import { InteriorCheckBoxProps } from '@/types'
 
 const Interior = ({ checkboxes, setCheckBoxes }: InteriorCheckBoxProps) => {
     // Handler function to toggle the checked state of a checkbox
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, checked } = event.target;
         setCheckBoxes({
             ...checkboxes,
