@@ -1,11 +1,5 @@
 # PermitFlow Assessment
 
-This is a blank Next.js application that you can use to submit your PermitFlow assessment. We've included:
-
-- TypeScript
-- Tailwind
-- Prisma
-
 ## Objective
 
 The objective of this project was to design a Questionaire for contractors to determine if a permit is needed & what steps do they need to get approval for their renovation. It uses the following tech stack:
@@ -18,10 +12,16 @@ The objective of this project was to design a Questionaire for contractors to de
 * tRPC
 * Prisma
 * Zod
+* PostgreSQL
+* pgAdmin (optional)
 
 ## Screenshots
 
 Include screenshots of your project here.
+
+| ![Main Menu]('URL Here') | 
+|:--:| 
+| *Main Menu* |
 
 ## Video Demo
 
@@ -49,8 +49,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-`app/page.tsx` is the entrypoint for the app.
 
 ### IDE
 
