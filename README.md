@@ -8,7 +8,7 @@ This is a blank Next.js application that you can use to submit your PermitFlow a
 
 ## Objective
 
-Briefly describe the objective or purpose of your project.
+The objective of this project was to design a Questionaire for contractors to determine if a permit is needed & what steps do they need to get approval for their renovation. 
 
 ## Screenshots
 
@@ -22,7 +22,7 @@ Click the image above to watch a video demo of the project.
 
 ## Setup Instructions
 
-## Containers
+### Containers
 
 We've also included Postgres and Redis containers. To spin them up, use:
 
@@ -32,7 +32,7 @@ docker compose up -d
 
 which will start a Postgres container on `localhost:5432` and a Redis container on `localhost:6379`.
 
-## Starting the dev server
+### Starting the dev server
 
 ```bash
 npm i
@@ -43,6 +43,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 `app/page.tsx` is the entrypoint for the app.
 
-## Author
+### Author
 
-- [Your Name](https://github.com/your-username)
+Paarth Arora
+e: paarth.arora21@gmail.com
+p: 437-937-1942
