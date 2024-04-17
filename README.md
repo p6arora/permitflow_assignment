@@ -45,7 +45,7 @@ Click the image above to watch a video demo of the project.
 
 ### Containers
 
-We've also included Postgres and Redis containers. To spin them up, use:
+There are Postgres and Redis containers. To spin them up, use:
 
 ```
 docker compose up -d
