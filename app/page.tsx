@@ -92,40 +92,46 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    let resultString = ""
+    enum resultEnum {
+      inHouse = "inHouseReviewProcess",
+      otc = "otcSubmissionProcess",
+      none = "noPermit"
+    }
+
+    let permitResult: resultEnum;
 
     // exterior logic
     if (selectedOption === "exterior") {
       if (exteriorCheckboxes.other) {
-        resultString = "inHouseReviewProcess"
+        permitResult = resultEnum.inHouse
       }
       else if (exteriorCheckboxes.garageDoorReplacement || exteriorCheckboxes.exteriorDoors) {
-        resultString = "otcSubmissionProcess"
+        permitResult = resultEnum.otc
       }
       else {
-        resultString = "noPermit"
+        permitResult = resultEnum.none
       }
     }
     // interior logic
     else {
       if (interiorCheckboxes.bathroomRemodel) {
-        resultString = "otcSubmissionProcess"
+        permitResult = resultEnum.otc
       }
       else {
-        resultString = "inHouseReviewProcess"
+        permitResult = resultEnum.inHouse
       }
 
     }
 
     // tRPC call to persist results to the database
     const res = await createNewPermit.mutateAsync({
-      process: resultString,
-      nextSteps: nextSteps.get(resultString)
+      process: permitResult,
+      nextSteps: nextSteps.get(permitResult)
     });
     console.log(res)
 
     // navigate user to the results page
-    router.push('/results?nextSteps=' + resultString)
+    router.push('/results?nextSteps=' + permitResult)
   }
 
   return (
