@@ -17,7 +17,9 @@ The objective of this project was to design a Questionaire for contractors to de
 
 ## Screenshots
 
-Include screenshots of your project here.
+| ![File Hierarchy](misc/Screenshots/fileHiearchy.png) | 
+|:--:| 
+| *File Hierarchy* |
 
 | ![Initial Landing Page](misc/Screenshots/QuestionairePage.png) | 
 |:--:| 
