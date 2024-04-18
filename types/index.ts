@@ -12,11 +12,6 @@ export interface ExteriorCheckBoxes {
     other: boolean;
 };
 
-// export interface InteriorCheckBoxProps {
-//     checkboxes: InteriorCheckBoxes;
-//     setCheckBoxes: React.Dispatch<React.SetStateAction<InteriorCheckBoxes>>;
-// };
-
 export interface InteriorCheckBoxProps {
     onCheckBoxChange: (name: string, checked: boolean) => void;
 }
@@ -25,8 +20,3 @@ export interface ExteriorCheckBoxProps {
     onCheckBoxChange: (name: string, checked: boolean) => void;
 }
   
-
-// export interface ExteriorCheckBoxProps {
-//     checkboxes: ExteriorCheckBoxes;
-//     setCheckBoxes: React.Dispatch<React.SetStateAction<ExteriorCheckBoxes>>;
-// };
