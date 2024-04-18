@@ -2,6 +2,8 @@
 
 ## Objective
 
+Assignment: https://permitflow.notion.site/Software-Engineer-Case-Study-9d274bd8b3774c60aaf18cd46abb5bde
+
 The objective of this project was to design a Questionaire for contractors to determine if a permit is needed & what steps do they need to get approval for their renovation. It uses the following tech stack:
 
 * Next.js
