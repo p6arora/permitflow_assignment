@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 const Results = () => {
     const searchParams = useSearchParams()
     const nextSteps = searchParams.get('nextSteps')
-    console.log(nextSteps)
+    // console.log(nextSteps)
     return (
         <div>
             {nextSteps === "inHouseReviewProcess" &&
