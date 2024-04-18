@@ -17,10 +17,6 @@ The objective of this project was to design a Questionaire for contractors to de
 
 ## Screenshots
 
-| ![File Hierarchy](misc/Screenshots/fileHiearchy.png) | 
-|:--:| 
-| *File Hierarchy* |
-
 | ![Initial Landing Page](misc/Screenshots/QuestionairePage.png) | 
 |:--:| 
 | *Initial Questionaire Page* |
@@ -36,6 +32,10 @@ The objective of this project was to design a Questionaire for contractors to de
 | ![Database](misc/Screenshots/Database.png) | 
 |:--:| 
 | *pgAdmin showcasing new entry into database* |
+
+| ![File Hierarchy](misc/Screenshots/fileHiearchy.png) | 
+|:--:| 
+| *File Hierarchy* |
 
 ## Video Demo
 
