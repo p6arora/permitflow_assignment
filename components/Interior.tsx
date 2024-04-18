@@ -2,14 +2,11 @@
 import React from "react"
 import { InteriorCheckBoxProps } from "@/types"
 
-const Interior = ({ checkboxes, setCheckBoxes }: InteriorCheckBoxProps) => {
+const Interior = ({ onCheckBoxChange }: InteriorCheckBoxProps) => {
   // Handler function to toggle the checked state of a checkbox
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, checked } = event.target
-    setCheckBoxes({
-      ...checkboxes,
-      [name]: checked,
-    })
+    onCheckBoxChange(name, checked)
   }
 
   return (
@@ -22,7 +19,7 @@ const Interior = ({ checkboxes, setCheckBoxes }: InteriorCheckBoxProps) => {
             type="checkbox"
             name="bathroomRemodel"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.bathroomRemodel}
+            // checked={checkboxes.bathroomRemodel}
             onChange={handleCheckboxChange}
           />
           Bathroom Remodel
@@ -32,7 +29,7 @@ const Interior = ({ checkboxes, setCheckBoxes }: InteriorCheckBoxProps) => {
             type="checkbox"
             name="newBathroom"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.newBathroom}
+            // checked={checkboxes.newBathroom}
             onChange={handleCheckboxChange}
           />
           New Bathroom
@@ -42,7 +39,7 @@ const Interior = ({ checkboxes, setCheckBoxes }: InteriorCheckBoxProps) => {
             type="checkbox"
             name="newLaundryRoom"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.newLaundryRoom}
+            // checked={checkboxes.newLaundryRoom}
             onChange={handleCheckboxChange}
           />
           New Laundry Room
@@ -52,7 +49,7 @@ const Interior = ({ checkboxes, setCheckBoxes }: InteriorCheckBoxProps) => {
             type="checkbox"
             name="other"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.other}
+            // checked={checkboxes.other}
             onChange={handleCheckboxChange}
           />
           Other

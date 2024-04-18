@@ -2,14 +2,11 @@
 import React from "react"
 import { ExteriorCheckBoxProps } from "@/types"
 
-const Exterior = ({ checkboxes, setCheckBoxes }: ExteriorCheckBoxProps) => {
+const Exterior = ({ onCheckBoxChange }: ExteriorCheckBoxProps) => {
   // Handler function to toggle the checked state of a checkbox
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, checked } = event.target
-    setCheckBoxes({
-      ...checkboxes,
-      [name]: checked,
-    })
+    onCheckBoxChange(name, checked)
   }
 
   return (
@@ -22,7 +19,7 @@ const Exterior = ({ checkboxes, setCheckBoxes }: ExteriorCheckBoxProps) => {
             type="checkbox"
             name="garageDoorReplacement"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.garageDoorReplacement}
+            // checked={checkboxes.garageDoorReplacement}
             onChange={handleCheckboxChange}
           />
           Garage Door Replacement
@@ -32,7 +29,7 @@ const Exterior = ({ checkboxes, setCheckBoxes }: ExteriorCheckBoxProps) => {
             type="checkbox"
             name="exteriorDoors"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.exteriorDoors}
+            // checked={checkboxes.exteriorDoors}
             onChange={handleCheckboxChange}
           />
           Exterior Doors
@@ -42,7 +39,7 @@ const Exterior = ({ checkboxes, setCheckBoxes }: ExteriorCheckBoxProps) => {
             type="checkbox"
             name="fencing"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.fencing}
+            // checked={checkboxes.fencing}
             onChange={handleCheckboxChange}
           />
           Fencing
@@ -52,7 +49,7 @@ const Exterior = ({ checkboxes, setCheckBoxes }: ExteriorCheckBoxProps) => {
             type="checkbox"
             name="other"
             className="checkbox checkbox-md mx-2 border-blue-500 checked:border-blue-500 [--chkbg:theme(colors.blue.500)] [--chkfg:white]"
-            checked={checkboxes.other}
+            // checked={checkboxes.other}
             onChange={handleCheckboxChange}
           />
           Other

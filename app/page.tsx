@@ -46,6 +46,20 @@ export default function Home() {
     other: false,
   })
 
+  function handleExteriorCheckboxes(name: string, checked: boolean): void {
+    setExteriorCheckboxes({
+      ...exteriorCheckboxes,
+      [name]: checked,
+    })
+  }
+
+  function handleInteriorCheckboxes(name: string, checked: boolean): void {
+    setInteriorCheckboxes({
+      ...interiorCheckboxes,
+      [name]: checked,
+    })
+  }
+
   // Validate an option was selected
   const validateOptionSelected = (): Boolean => {
     // One of the exterior checkboxes was selected
@@ -153,10 +167,10 @@ export default function Home() {
             <option value="exterior">Exterior</option>
           </select>
           {selectedOption === "interior" && (
-            <Interior checkboxes={interiorCheckboxes} setCheckBoxes={setInteriorCheckboxes} />
+            <Interior onCheckBoxChange={handleInteriorCheckboxes} />
           )}
           {selectedOption === "exterior" && (
-            <Exterior checkboxes={exteriorCheckboxes} setCheckBoxes={setExteriorCheckboxes} />
+            <Exterior onCheckBoxChange={handleExteriorCheckboxes} />
           )}
           <div className="flex justify-center">
             {selectedOption && validateOptionSelected() && (
