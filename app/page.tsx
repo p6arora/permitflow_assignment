@@ -46,6 +46,7 @@ export default function Home() {
     other: false,
   })
 
+  // function to send to Exterior children component to handle checkbox change
   function handleExteriorCheckboxes(name: string, checked: boolean): void {
     setExteriorCheckboxes({
       ...exteriorCheckboxes,
@@ -53,6 +54,7 @@ export default function Home() {
     })
   }
 
+  // function to send to Interior children component to handle checkbox change
   function handleInteriorCheckboxes(name: string, checked: boolean): void {
     setInteriorCheckboxes({
       ...interiorCheckboxes,
