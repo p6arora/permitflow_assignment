@@ -64,30 +64,14 @@ export default function Home() {
 
   // Validate an option was selected
   const validateOptionSelected = (): Boolean => {
-    // One of the exterior checkboxes was selected
+    // Any of the checkboxes are selected
     if (
-      exteriorCheckboxes.garageDoorReplacement ||
-      exteriorCheckboxes.exteriorDoors ||
-      exteriorCheckboxes.fencing ||
-      exteriorCheckboxes.other
+      Object.values(exteriorCheckboxes).some(Boolean) ||
+      Object.values(interiorCheckboxes).some(Boolean)
     ) {
       return true
     }
-
-    // One of the internal checkboxes was selected
-    else if (
-      interiorCheckboxes.bathroomRemodel ||
-      interiorCheckboxes.newBathroom ||
-      interiorCheckboxes.newLaundryRoom ||
-      interiorCheckboxes.other
-    ) {
-      return true
-    }
-
-    // nothing was selected
-    else {
-      return false
-    }
+    return false
   }
 
   // Reset checkboxes
@@ -147,7 +131,6 @@ export default function Home() {
       process: permitResult,
       nextSteps: nextSteps.get(permitResult),
     })
-    console.log(res)
 
     // navigate user to the results page
     router.push("/results?nextSteps=" + permitResult)
