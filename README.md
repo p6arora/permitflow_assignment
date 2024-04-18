@@ -41,7 +41,7 @@ The objective of this project was to design a Questionaire for contractors to de
 
 ## Video Demo
 
-[![Video Demo](https://placeholder.com/640x360)](https://www.youtube.com/watch?v=VIDEO_ID)
+https://www.youtube.com/watch?v=uSY7qdOXiwI
 
 Click the image above to watch a video demo of the project.
 
