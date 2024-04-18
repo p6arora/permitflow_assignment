@@ -1,6 +1,6 @@
 // Import React and other necessary testing libraries
 import { render, screen } from "@testing-library/react"
-import Results from "@/app/results/page" // Adjust the path as necessary
+import Results from "@/app/results/page"
 import { useSearchParams } from "next/navigation"
 
 // Mock next/navigation with a default implementation that can be overridden
@@ -11,7 +11,7 @@ jest.mock("next/navigation", () => ({
 describe("Results Component", () => {
   it("renders inHouseReviewProcess correctly", () => {
     // Override the useSearchParams mock for this test
-    ;(useSearchParams as jest.Mock).mockImplementation(() => ({
+    (useSearchParams as jest.Mock).mockImplementation(() => ({
       get: (key: string) => (key === "nextSteps" ? "inHouseReviewProcess" : null),
     }))
 
@@ -24,7 +24,7 @@ describe("Results Component", () => {
 
   it("renders otcSubmissionProcess correctly", () => {
     // Override the useSearchParams mock for this test
-    ;(useSearchParams as jest.Mock).mockImplementation(() => ({
+    (useSearchParams as jest.Mock).mockImplementation(() => ({
       get: (key: string) => (key === "nextSteps" ? "otcSubmissionProcess" : null),
     }))
 
@@ -36,7 +36,7 @@ describe("Results Component", () => {
 
   it("renders noPermit correctly", () => {
     // Override the useSearchParams mock for this test
-    ;(useSearchParams as jest.Mock).mockImplementation(() => ({
+    (useSearchParams as jest.Mock).mockImplementation(() => ({
       get: (key: string) => (key === "nextSteps" ? "noPermit" : null),
     }))
 

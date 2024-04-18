@@ -37,7 +37,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "__tests__/Results.test.jsx", "__tests__/Results.test.jsx"  ],
   "exclude": [
     "node_modules"
   ]
