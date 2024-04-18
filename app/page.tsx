@@ -1,24 +1,31 @@
-'use client';
-import { useState } from "react";
-import Header from "../components/Header";
-import Interior from "../components/Interior";
-import Exterior from "../components/Exterior";
-import { InteriorCheckBoxes, ExteriorCheckBoxes } from '@/types'
-import { useRouter } from 'next/navigation'
-import { trpc } from '@/app/_trpc/client'
+"use client"
+import { useState } from "react"
+import Header from "../components/Header"
+import Interior from "../components/Interior"
+import Exterior from "../components/Exterior"
+import { InteriorCheckBoxes, ExteriorCheckBoxes } from "@/types"
+import { useRouter } from "next/navigation"
+import { trpc } from "@/app/_trpc/client"
 
 export default function Home() {
   // hook to allow communication with tRPC
   const createNewPermit = trpc.createNewPermitProcess.useMutation()
 
   // State to keep track of the selected option
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<string>("")
 
   // State to keep track of next steps relative to result
-  const nextSteps = new Map();
-  nextSteps.set('inHouseReviewProcess', ['Obtain a building permit', 'Include plan sets', 'Submit application for in-house review'])
-  nextSteps.set('otcSubmissionProcess', ['Obtain a building permit', 'Submit application for OTC review'])
-  nextSteps.set('noPermit', [])
+  const nextSteps = new Map()
+  nextSteps.set("inHouseReviewProcess", [
+    "Obtain a building permit",
+    "Include plan sets",
+    "Submit application for in-house review",
+  ])
+  nextSteps.set("otcSubmissionProcess", [
+    "Obtain a building permit",
+    "Submit application for OTC review",
+  ])
+  nextSteps.set("noPermit", [])
 
   // Initalize the router
   const router = useRouter()
@@ -28,22 +35,22 @@ export default function Home() {
     garageDoorReplacement: false,
     exteriorDoors: false,
     fencing: false,
-    other: false
-  });
+    other: false,
+  })
 
   // State to keep track of the checked state of each internal checkbox
   const [interiorCheckboxes, setInteriorCheckboxes] = useState<InteriorCheckBoxes>({
     bathroomRemodel: false,
     newBathroom: false,
     newLaundryRoom: false,
-    other: false
-  });
+    other: false,
+  })
 
   // Validate an option was selected
   const validateOptionSelected = (): Boolean => {
-
     // One of the exterior checkboxes was selected
-    if (exteriorCheckboxes.garageDoorReplacement ||
+    if (
+      exteriorCheckboxes.garageDoorReplacement ||
       exteriorCheckboxes.exteriorDoors ||
       exteriorCheckboxes.fencing ||
       exteriorCheckboxes.other
@@ -52,7 +59,8 @@ export default function Home() {
     }
 
     // One of the internal checkboxes was selected
-    else if (interiorCheckboxes.bathroomRemodel ||
+    else if (
+      interiorCheckboxes.bathroomRemodel ||
       interiorCheckboxes.newBathroom ||
       interiorCheckboxes.newLaundryRoom ||
       interiorCheckboxes.other
@@ -68,7 +76,6 @@ export default function Home() {
 
   // Reset checkboxes
   const resetCheckboxes = (): void => {
-
     // Reset external checkboxes
     exteriorCheckboxes.exteriorDoors = false
     exteriorCheckboxes.fencing = false
@@ -84,9 +91,9 @@ export default function Home() {
 
   // Handler function to update the selected option
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    setSelectedOption(event.target.value);
+    setSelectedOption(event.target.value)
     resetCheckboxes()
-  };
+  }
 
   // function to handle the onSubmit action
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -95,20 +102,18 @@ export default function Home() {
     enum resultEnum {
       inHouse = "inHouseReviewProcess",
       otc = "otcSubmissionProcess",
-      none = "noPermit"
+      none = "noPermit",
     }
 
-    let permitResult: resultEnum;
+    let permitResult: resultEnum
 
     // exterior logic
     if (selectedOption === "exterior") {
       if (exteriorCheckboxes.other) {
         permitResult = resultEnum.inHouse
-      }
-      else if (exteriorCheckboxes.garageDoorReplacement || exteriorCheckboxes.exteriorDoors) {
+      } else if (exteriorCheckboxes.garageDoorReplacement || exteriorCheckboxes.exteriorDoors) {
         permitResult = resultEnum.otc
-      }
-      else {
+      } else {
         permitResult = resultEnum.none
       }
     }
@@ -116,22 +121,20 @@ export default function Home() {
     else {
       if (interiorCheckboxes.bathroomRemodel) {
         permitResult = resultEnum.otc
-      }
-      else {
+      } else {
         permitResult = resultEnum.inHouse
       }
-
     }
 
     // tRPC call to persist results to the database
     const res = await createNewPermit.mutateAsync({
       process: permitResult,
-      nextSteps: nextSteps.get(permitResult)
-    });
+      nextSteps: nextSteps.get(permitResult),
+    })
     console.log(res)
 
     // navigate user to the results page
-    router.push('/results?nextSteps=' + permitResult)
+    router.push("/results?nextSteps=" + permitResult)
   }
 
   return (
@@ -140,18 +143,33 @@ export default function Home() {
       <div className="flex justify-center w-full">
         <form onSubmit={handleSubmit} className="w-full max-w-lg">
           <h2 className="p-4 text-3xl font-bold">What Residential Work Are You Doing?</h2>
-          <select className="select select-bordered select-lg max-w-xs mx-auto self-center ml-24" value={selectedOption} onChange={handleSelectChange}>
+          <select
+            className="select select-bordered select-lg max-w-xs mx-auto self-center ml-24"
+            value={selectedOption}
+            onChange={handleSelectChange}
+          >
             <option selected>Select Renovation</option>
             <option value="interior">Interior</option>
             <option value="exterior">Exterior</option>
           </select>
-          {selectedOption === "interior" && <Interior checkboxes={interiorCheckboxes} setCheckBoxes={setInteriorCheckboxes} />}
-          {selectedOption === "exterior" && <Exterior checkboxes={exteriorCheckboxes} setCheckBoxes={setExteriorCheckboxes} />}
+          {selectedOption === "interior" && (
+            <Interior checkboxes={interiorCheckboxes} setCheckBoxes={setInteriorCheckboxes} />
+          )}
+          {selectedOption === "exterior" && (
+            <Exterior checkboxes={exteriorCheckboxes} setCheckBoxes={setExteriorCheckboxes} />
+          )}
           <div className="flex justify-center">
-            {selectedOption && validateOptionSelected() && <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg bg-blue-500 text-white m-4" type="submit">Submit</button>}
+            {selectedOption && validateOptionSelected() && (
+              <button
+                className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg bg-blue-500 text-white m-4"
+                type="submit"
+              >
+                Submit
+              </button>
+            )}
           </div>
         </form>
-      </div >
-    </main >
+      </div>
+    </main>
   )
 }
