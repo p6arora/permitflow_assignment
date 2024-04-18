@@ -37,7 +37,7 @@ describe('Interior component', () => {
         };
 
         render(<InteriorWrapper />);
-        const myElem = screen.getByText('Bathroom Remodel')
+        const myElem = screen.getByText('Bathroom Remodel');
         expect(myElem).toBeInTheDocument();
     });
 
@@ -55,7 +55,7 @@ describe('Interior component', () => {
         };
 
         render(<InteriorWrapper />);
-        const myElem = screen.getByText('New Bathroom')
+        const myElem = screen.getByText('New Bathroom');
         expect(myElem).toBeInTheDocument();
     });
 
@@ -73,7 +73,7 @@ describe('Interior component', () => {
         };
 
         render(<InteriorWrapper />);
-        const myElem = screen.getByText('New Laundry Room')
+        const myElem = screen.getByText('New Laundry Room');
         expect(myElem).toBeInTheDocument();
     });
 
@@ -91,7 +91,7 @@ describe('Interior component', () => {
         };
 
         render(<InteriorWrapper />);
-        const myElem = screen.getByText('Other')
+        const myElem = screen.getByText('Other');
         expect(myElem).toBeInTheDocument();
     });
 

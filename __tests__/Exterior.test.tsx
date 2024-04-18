@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react';
 const { expect, describe, it } = require('@jest/globals');
 import { Exterior } from '@/components';
 import { useState } from 'react';
@@ -35,7 +35,7 @@ describe('Exterior component', () => {
         };
 
         render(<ExteriorWrapper />);
-        const myElem = screen.getByText('Garage Door Replacement')
+        const myElem = screen.getByText('Garage Door Replacement');
         expect(myElem).toBeInTheDocument();
     });
 
@@ -69,7 +69,7 @@ describe('Exterior component', () => {
         };
 
         render(<ExteriorWrapper />);
-        const myElem = screen.getByText('Fencing')
+        const myElem = screen.getByText('Fencing');
         expect(myElem).toBeInTheDocument();
     });
 
@@ -86,7 +86,7 @@ describe('Exterior component', () => {
         };
 
         render(<ExteriorWrapper />);
-        const myElem = screen.getByText('Other')
+        const myElem = screen.getByText('Other');
         expect(myElem).toBeInTheDocument();
     });
 
