@@ -43,8 +43,6 @@ The objective of this project was to design a Questionaire for contractors to de
 
 https://www.youtube.com/watch?v=uSY7qdOXiwI
 
-Click the image above to watch a video demo of the project.
-
 ## Setup Instructions
 
 ### Containers
